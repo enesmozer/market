@@ -44,12 +44,6 @@
       "airbnb"
     ]
   },
-  "prettier": {
-    "printWidth": 90,
-    "bracketSpacing": false,
-    "trailingComma": "es5",
-    "singleQuote": true
-  },
   "browserslist": {
     "production": [
       ">0.2%",
