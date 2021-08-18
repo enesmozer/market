@@ -1,14 +1,15 @@
-import axios from "axios";
+// eslint-disable-next-line import/no-unresolved
+import axios from 'axios';
 
-export const http = axios.create({
+const http = axios.create({
   headers: {
-    "Content-Type": "application/json",
-    "X-Requested-With": "XMLHttpRequest",
-    "X-Application-Name": "market",
+    'Content-Type': 'application/json',
+    'X-Requested-With': 'XMLHttpRequest',
+    'X-Application-Name': 'market',
   },
 });
 http.interceptors.response.use(
-  function (response) {
+  (response) => {
     if (response.data) {
       if (response.data.statusCode === 200 && response.data.message) {
         console.log(response.data);
@@ -16,9 +17,9 @@ http.interceptors.response.use(
     }
     return response;
   },
-  function (error) {
-    const response = error.response;
-    const statusCode = response.statusCode;
+  (error) => {
+    const { response } = error;
+    const { statusCode } = response;
     if (statusCode === 401) {
       window.location.href = window.location.pathname;
       return new Promise(() => {});
@@ -27,8 +28,9 @@ http.interceptors.response.use(
       return new Promise(() => {});
     }
     if (response.message) {
-        console.log(response.message);
-      }
-      return Promise.reject(error);
+      console.log(response.message);
     }
+    return Promise.reject(error);
+  },
 );
+export default http;
