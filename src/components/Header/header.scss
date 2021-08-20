@@ -25,7 +25,21 @@
     background-color: $dark;
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: center;
     color: $white;
+    &-icon {
+      width: 2.4rem;
+      height: 2.453rem;
+    }
+    &-cost {
+      font-family: Open Sans;
+      font-style: normal;
+      font-weight: 600;
+      font-size: 1.4rem;
+      line-height: 1.8rem;
+      letter-spacing: 0.016rem;
+      transform: translateY(15%);
+      margin-left: 1rem;
+    }
   }
 }

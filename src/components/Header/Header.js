@@ -8,8 +8,8 @@ function Header({ cost }) {
     <header className="header">
       <img className="header-logo" src={Logo} alt="logo" />
       <div className="header-basket">
-        <img src={Basket} alt="basket" />
-        <span className="header-cost">
+        <img src={Basket} alt="basket" className="header-basket-icon" />
+        <span className="header-basket-cost">
           ₺
           {cost}
         </span>
