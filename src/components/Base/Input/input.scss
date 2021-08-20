@@ -1,0 +1,82 @@
+@import '../../../styles/variables.scss';
+.base-input {
+  display: block;
+  position: relative;
+  padding-left: 3.5rem;
+  margin-bottom: 1.2rem;
+  cursor: pointer;
+  font-size: 2.2rem;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  &:hover input ~ .checkmark {
+    background-color: #ccc;
+  }
+  input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+    &:checked ~ .checkmark:after {
+      display: block;
+    }
+    &[type='radio'] {
+      ~ .checkmark {
+        background: $white;
+        border: 0.2rem solid #dfdee2;
+        box-sizing: border-box;
+        border-radius: 1.75rem;
+      }
+      &:checked ~ .checkmark {
+        border: 0.2rem solid $primary;
+        &:after {
+          inset: 0;
+          margin: auto;
+          width: 0.5rem;
+          height: 1rem;
+          border: solid $primary;
+          border-width: 0 0.12rem 0.12rem 0;
+          margin-bottom: 0.4rem;
+        }
+      }
+    }
+    &[type='checkbox'] {
+      ~ .checkmark {
+        background: $white;
+        box-shadow: 0 0.1rem 0.7rem rgba(93, 56, 192, 0.4);
+        border-radius: 0.2rem;
+      }
+      &:checked ~ .checkmark {
+        background: $primary;
+        &:after {
+          inset: 0;
+          margin: auto;
+          width: 0.5rem;
+          height: 1.2rem;
+          border: solid $white;
+          border-width: 0 0.12rem 0.12rem 0;
+          margin-bottom: 0.6rem;
+        }
+      }
+    }
+  }
+  .checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 2.2rem;
+    height: 2.2rem;
+    &:after {
+      content: '';
+      position: absolute;
+      display: none;
+    }
+  }
+  .checkmark:after {
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }
+}
