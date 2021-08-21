@@ -1,7 +1,10 @@
+/* eslint-disable max-len */
+import PropTypes from 'prop-types';
 import Product from '../Base/Product/Product';
 import './productList.scss';
 
-function Products() {
+function ProductList({ list }) {
+  const products = list.map((product) => <Product key={product.added} name={product.name} cost={product.price} />);
   return (
     <main className="productList">
       <div className="productList-header">
@@ -15,25 +18,16 @@ function Products() {
           </button>
         </div>
       </div>
-      <div className="productList-main">
-        <Product name="Office Mugs" cost={14.99} />
-        <Product name="Office Mugs" cost={14.99} />
-        <Product name="Office Mugs" cost={14.99} />
-        <Product name="Office Mugs" cost={14.99} />
-        <Product name="Office Mugs" cost={14.99} />
-        <Product name="Office Mugs" cost={14.99} />
-        <Product name="Office Mugs" cost={14.99} />
-        <Product name="Office Mugs" cost={14.99} />
-        <Product name="Office Mugs" cost={14.99} />
-        <Product name="Office Mugs" cost={14.99} />
-        <Product name="Office Mugs" cost={14.99} />
-        <Product name="Office Mugs" cost={14.99} />
-        <Product name="Office Mugs" cost={14.99} />
-        <Product name="Office Mugs" cost={14.99} />
-        <Product name="Office Mugs" cost={14.99} />
-        <Product name="Office Mugs" cost={14.99} />
-      </div>
+      <div className="productList-main">{products}</div>
     </main>
   );
 }
-export default Products;
+ProductList.propTypes = {
+  list: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      cost: PropTypes.number.isRequired,
+    }),
+  ).isRequired,
+};
+export default ProductList;
