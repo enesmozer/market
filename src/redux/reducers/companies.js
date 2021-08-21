@@ -6,7 +6,7 @@ const companies = (state = initialState, action) => {
     case 'GET_COMPANIES ':
       return { ...state };
     default:
-      break;
+      return state;
   }
 };
 export default companies;
