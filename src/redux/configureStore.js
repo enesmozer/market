@@ -4,9 +4,11 @@ import {
 } from 'redux';
 import createSagaMiddleware from 'redux-saga';
 import companies from './reducers/companies';
+import products from './reducers/products';
 import rootSaga from './sagas/rootSaga';
 
 const reducers = combineReducers({
+  products,
   companies,
 });
 const sagaMiddleware = createSagaMiddleware();
