@@ -1,8 +1,8 @@
-import './products.scss';
+import './productList.scss';
 
 function Products() {
   return (
-    <div className="products">
+    <main className="products">
       <div className="products-header">
         <div className="title"> Products</div>
         <div className="buttons">
@@ -16,7 +16,7 @@ function Products() {
       </div>
       {/* <div className="products-main">
       </div> */}
-    </div>
+    </main>
   );
 }
 export default Products;
