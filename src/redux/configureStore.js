@@ -1,13 +1,22 @@
-import { combineReducers, createStore } from 'redux';
+/* eslint-disable no-underscore-dangle */
+import {
+  combineReducers, createStore, applyMiddleware, compose,
+} from 'redux';
 import createSagaMiddleware from 'redux-saga';
 import companies from './reducers/companies';
-
-const sagaMiddleware = createSagaMiddleware();
-const middleware = [sagaMiddleware];
+import rootSaga from './sagas/rootSaga';
 
 const reducers = combineReducers({
   companies,
 });
-const store = createStore(reducers);
+const sagaMiddleware = createSagaMiddleware();
 
-export default reducers;
+const middleware = [sagaMiddleware];
+
+const store = compose(
+  applyMiddleware(...middleware),
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
+)(createStore)(reducers);
+
+sagaMiddleware.run(rootSaga);
+export default store;

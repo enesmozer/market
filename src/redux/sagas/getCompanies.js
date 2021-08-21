@@ -1,11 +1,17 @@
 import { call, put, takeEvery } from 'redux-saga/effects';
-import service from '../../services/companies';
+import fetchCompanies from '../../services/companies';
 
 function* handleGetCompanies() {
-  const companies = yield call(service.list);
-  yield put({ type: 'GET_COMPANIES', companies });
+  try {
+    const companies = yield call(fetchCompanies.list);
+    yield put({ type: 'GET_COMPANIES_SUCCESS', companies });
+  } catch (err) {
+    yield put({ type: 'GET_COMPANIES_FAILED', message: err.message });
+  }
 }
-function* watcherCompanySaga() {
-  yield takeEvery('GET_COMPANIES', handleGetCompanies);
+
+function* watcherCompaniesSaga() {
+  yield takeEvery('GET_COMPANIES_REQUESTED', handleGetCompanies);
 }
-export default watcherCompanySaga;
+
+export default watcherCompaniesSaga;

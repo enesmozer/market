@@ -1,4 +1,3 @@
-// eslint-disable-next-line import/no-unresolved
 import axios from 'axios';
 
 const http = axios.create({
@@ -12,7 +11,7 @@ http.interceptors.response.use(
   (response) => {
     if (response.data) {
       if (response.data.statusCode === 200 && response.data.message) {
-        console.log(response.data);
+        return response.data;
       }
     }
     return response;
@@ -28,7 +27,7 @@ http.interceptors.response.use(
       return new Promise(() => {});
     }
     if (response.message) {
-      console.log(response.message);
+      return response.message;
     }
     return Promise.reject(error);
   },
