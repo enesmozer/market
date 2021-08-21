@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getCompanies } from './redux/actions/index';
+import { getCompanies, getProducts } from './redux/actions/index';
 import Header from './components/Header/Header';
 import SortingCard from './components/SortingCard/SortingCard';
 import FilterCard from './components/FilterCard/FilterCard';
@@ -11,11 +11,14 @@ import './styles/App.scss';
 function App() {
   const dispatch = useDispatch();
   const companies = useSelector((state) => state.companies.companies);
-  // const loading = useSelector((state) => state.companies.loading);
-  // const error = useSelector((state) => state.companies.error);
+  const products = useSelector((state) => state.products.products);
 
   useEffect(() => {
     dispatch(getCompanies());
+  }, []);
+
+  useEffect(() => {
+    dispatch(getProducts());
   }, []);
   return (
     <div className="App">
@@ -27,7 +30,7 @@ function App() {
           {/* <FilterCard data={companies} /> */}
         </div>
         <div className="products">
-          <ProductList />
+          <ProductList list={products} />
         </div>
         <div className="product-basket">
           <Basket />
