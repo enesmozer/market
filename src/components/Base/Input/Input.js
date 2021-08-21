@@ -4,13 +4,18 @@ import './input.scss';
 function Input({
   label, type, value, name, id,
 }) {
-  return (
-    <label htmlFor={id} className="base-input">
-      {label}
-      <input type={type} id={id} name={name} value={value} />
-      <span className="checkmark" />
-    </label>
-  );
+  if (type === 'text') {
+    return <input type="text" placeholder={label} />;
+  }
+  if (type === 'radio' || type === 'checkbox') {
+    return (
+      <label htmlFor={id} className="filter-input">
+        <span className="label">{label}</span>
+        <input type={type} id={id} name={name} value={value} />
+        <span className="checkmark" />
+      </label>
+    );
+  }
 }
 Input.propTypes = {
   label: PropTypes.string.isRequired,

@@ -1,5 +1,5 @@
 @import '../../../styles/variables.scss';
-.base-input {
+.filter-input {
   display: block;
   position: relative;
   padding-left: 3.5rem;
@@ -10,6 +10,7 @@
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+  margin-bottom: 2.5rem;
   &:hover input ~ .checkmark {
     background-color: #ccc;
   }
@@ -78,5 +79,29 @@
     -webkit-transform: rotate(45deg);
     -ms-transform: rotate(45deg);
     transform: rotate(45deg);
+  }
+  .label {
+    font-family: Open Sans;
+    font-size: 1.4rem;
+    line-height: 1.8rem;
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.016rem;
+    color: #525252;
+  }
+}
+input[type='text'] {
+  width: 24.8rem;
+  height: 4.8rem;
+  border: 0.2rem solid #e0e0e0;
+  box-sizing: border-box;
+  border-radius: 0.2rem;
+  margin-bottom: 1.7rem;
+  &::placeholder {
+    font-family: Inter;
+    font-size: 1.4rem;
+    line-height: 2.4rem;
+    letter-spacing: 0.015rem;
+    color: #a8a8a8;
   }
 }
