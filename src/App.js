@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getCompanies, getProducts } from './redux/actions/index';
 import Header from './components/Header/Header';
@@ -20,7 +20,7 @@ function App() {
   useEffect(() => {
     dispatch(getProducts());
   }, []);
-
+  const [cart, setCart] = useState([]);
   return (
     <div className="App">
       <Header cost={70} />
@@ -31,10 +31,10 @@ function App() {
           {/* <FilterCard data={companies} /> */}
         </div>
         <div className="products">
-          <ProductList list={products} />
+          <ProductList list={products} cart={cart} setCart={setCart} />
         </div>
         <div className="product-basket">
-          <Basket />
+          <Basket cart={cart} setCart={setCart} />
         </div>
       </div>
     </div>
