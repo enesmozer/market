@@ -1,0 +1,60 @@
+@import '../../styles/variables.scss';
+.pagination-container {
+  display: flex;
+  list-style-type: none;
+  justify-content: center;
+  width: 53.5rem;
+  height: 4rem;
+  margin-top: 3.2rem;
+  .pagination-item {
+    width: 3.2rem;
+    height: 4rem;
+    margin: auto 0.4rem;
+    letter-spacing: 0.01071em;
+    min-width: 3.2rem;
+    font-family: Open Sans;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 1.4rem;
+    line-height: 1.6rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #697488;
+    flex: 1;
+    &.dots:hover {
+      background-color: transparent;
+      cursor: default;
+    }
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.04);
+      cursor: pointer;
+    }
+
+    &.selected {
+      background-color: $primary;
+      color: $white;
+    }
+
+    .arrow {
+      &-name {
+        margin-inline: 2rem;
+      }
+    }
+
+    &.disabled {
+      pointer-events: none;
+
+      .arrow::before {
+        border-right: 0.12em solid rgba(0, 0, 0, 0.43);
+        border-top: 0.12em solid rgba(0, 0, 0, 0.43);
+      }
+
+      &:hover {
+        background-color: transparent;
+        cursor: default;
+      }
+    }
+  }
+}
