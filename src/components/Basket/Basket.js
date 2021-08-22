@@ -5,6 +5,16 @@ import plus from '../../assets/plus.svg';
 
 function Basket({ cart, setCart }) {
   const getTotalSum = () => cart.reduce((sum, { price, quantity }) => sum + price * quantity, 0);
+  const increaseQunatity = (product) => {
+    const newCart = [...cart];
+    newCart.find((item) => item.name === product.name).quantity += 1;
+    setCart(newCart);
+  };
+  const decraseQunatity = (product) => {
+    const newCart = [...cart];
+    newCart.find((item) => item.name === product.name).quantity -= 1;
+    setCart(newCart);
+  };
   return (
     <div className="basket">
       {cart.map((item) => (
@@ -21,12 +31,16 @@ function Basket({ cart, setCart }) {
               className="minus"
               src={minus}
               alt=""
+              onClick={() => decraseQunatity(item)}
+              aria-hidden="true"
             />
             <div className="basketProduct-quantity-number">{item.quantity}</div>
             <img
               className="plus"
               src={plus}
               alt=""
+              onClick={() => increaseQunatity(item)}
+              aria-hidden="true"
             />
           </div>
         </div>
