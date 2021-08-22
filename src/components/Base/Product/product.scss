@@ -1,7 +1,7 @@
 @import '../../../styles/variables.scss';
 .product {
   width: 12.4rem;
-  height: 22.5rem;
+  height: 25.5rem;
   &-image-container {
     height: 12.4rem;
     width: 12.4rem;
@@ -26,6 +26,7 @@
     font-size: 1.4rem;
     line-height: 2rem;
     color: #191919;
+    height: 4rem;
   }
   &-cost {
     margin-top: 1rem;

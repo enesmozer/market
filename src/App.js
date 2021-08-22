@@ -20,6 +20,7 @@ function App() {
   useEffect(() => {
     dispatch(getProducts());
   }, []);
+
   return (
     <div className="App">
       <Header cost={70} />
