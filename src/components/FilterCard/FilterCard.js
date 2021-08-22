@@ -1,3 +1,4 @@
+/* eslint-disable react/no-array-index-key */
 import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Card from '../Base/Card/Card';
@@ -22,9 +23,9 @@ function BrandsCard({ data, filterCompanies, setFilterCompanies }) {
       data.filter((item) => item.name.toLowerCase().includes(searchInput.toLowerCase())),
     );
   }, [searchInput]);
-  const dataList = filteredCompanies.map((item) => (
+  const dataList = filteredCompanies.map((item, index) => (
     <Input
-      key={item.account}
+      key={index}
       label={item.name}
       type="checkbox"
       id={item.name}
@@ -45,10 +46,11 @@ BrandsCard.propTypes = {
       name: PropTypes.string.isRequired,
     }),
   ).isRequired,
-  setFilterCompanies: PropTypes.func.isRequired,
+  setFilterCompanies: PropTypes.func,
   filterCompanies: PropTypes.arrayOf(PropTypes.shape([])),
 };
 BrandsCard.defaultProps = {
   filterCompanies: [],
+  setFilterCompanies: () => {},
 };
 export default BrandsCard;

@@ -22,7 +22,15 @@ function App() {
   }, []);
   const [cart, setCart] = useState([]);
   const [sortType, setSortType] = useState('');
-  const [filterCompanies, setfilterCompanies] = useState([]);
+  const [filterCompanies, setFilterCompanies] = useState([]);
+  const allTags = [];
+  products.forEach((product) => {
+    allTags.push(...product.tags);
+  });
+  const uniqueTags = [...new Set(allTags)];
+  const tags = uniqueTags.map((tag) => ({
+    name: tag,
+  }));
   const getTotalSum = () => cart.reduce((sum, { price, quantity }) => sum + price * quantity, 0);
   return (
     <div className="App">
@@ -30,8 +38,12 @@ function App() {
       <div className="container">
         <div className="filters">
           <SortingCard sortType={sortType} setSortType={setSortType} />
-          <FilterCard data={companies} setSortType={setfilterCompanies} />
-          {/* <FilterCard data={companies} /> */}
+          <FilterCard
+            data={companies}
+            filterCompanies={filterCompanies}
+            setFilterCompanies={setFilterCompanies}
+          />
+          <FilterCard data={tags} />
         </div>
         <div className="products">
           <ProductList
