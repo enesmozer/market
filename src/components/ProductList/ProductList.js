@@ -1,7 +1,6 @@
 /* eslint-disable no-debugger */
 import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import Product from '../Base/Product/Product';
 import Pagination from '../Pagination/Pagination';
 import './productList.scss';
 
@@ -23,7 +22,6 @@ function ProductList({ list }) {
     const items = list.filter((item) => item.itemType === key);
     setcurrentProducts(items);
   };
-
   return (
     <main className="productList">
       <div className="productList-header">
@@ -47,11 +45,20 @@ function ProductList({ list }) {
       </div>
       <div className="productList-main">
         {currentProducts.map((product) => (
-          <Product
-            key={product.added}
-            name={product.name}
-            cost={product.price}
-          />
+          <div className="product">
+            <div className="product-image-container">
+              <img
+                src="https://picsum.photos/200"
+                className="product-image"
+                alt=""
+              />
+            </div>
+            <div className="product-cost">₺{product.price}</div>
+            <div className="product-title">{product.name}</div>
+            <button className="addButton" type="button">
+              Add
+            </button>
+          </div>
         ))}
       </div>
       <Pagination
@@ -72,4 +79,5 @@ ProductList.propTypes = {
     }),
   ).isRequired,
 };
+
 export default ProductList;
