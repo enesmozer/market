@@ -4,7 +4,7 @@ import Pagination from '../Pagination/Pagination';
 import './productList.scss';
 
 function ProductList({
-  list, cart, setCart, sortType,
+  list, cart, setCart, sortType, filterCompanies,
 }) {
   const [PageSize] = useState(16);
   const [currentPage, setCurrentPage] = useState(1);
@@ -63,6 +63,9 @@ function ProductList({
         break;
     }
   }, [sortType]);
+  useEffect(() => {
+    console.log({ filterCompanies });
+  }, [filterCompanies.length]);
   return (
     <main className="productList">
       <div className="productList-header">
@@ -135,8 +138,14 @@ ProductList.propTypes = {
   ).isRequired,
   setCart: PropTypes.func.isRequired,
   sortType: PropTypes.string,
+  filterCompanies: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string.isRequired,
+    }),
+  ),
 };
 ProductList.defaultProps = {
   sortType: '',
+  filterCompanies: [],
 };
 export default ProductList;
