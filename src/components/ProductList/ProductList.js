@@ -22,6 +22,21 @@ function ProductList({ list, cart, setCart }) {
     const items = list.filter((item) => item.itemType === key);
     setcurrentProducts(items);
   };
+  const addToCart = (product) => {
+    const newCart = [...cart];
+    let itemInCart = newCart.find((item) => product.name === item.name);
+    if (itemInCart) {
+      itemInCart.quantity += 1;
+    } else {
+      itemInCart = {
+        ...product,
+        quantity: 1,
+      };
+      newCart.push(itemInCart);
+    }
+    setCart(newCart);
+  };
+
   return (
     <main className="productList">
       <div className="productList-header">
@@ -53,12 +68,13 @@ function ProductList({ list, cart, setCart }) {
                 alt=""
               />
             </div>
-            <div className="product-cost">
-              ₺
-              {product.price}
-            </div>
+            <div className="product-cost">₺{product.price}</div>
             <div className="product-title">{product.name}</div>
-            <button className="addButton" type="button">
+            <button
+              className="addButton"
+              type="button"
+              onClick={() => addToCart(product)}
+            >
               Add
             </button>
           </div>
@@ -81,12 +97,7 @@ ProductList.propTypes = {
       cost: PropTypes.number,
     }),
   ).isRequired,
-  cart: PropTypes.arrayOf(
-    PropTypes.shape({
-      name: PropTypes.string.isRequired,
-      cost: PropTypes.number,
-    }),
-  ).isRequired,
+  cart: PropTypes.shape({}).isRequired,
   setCart: PropTypes.func.isRequired,
 };
 
