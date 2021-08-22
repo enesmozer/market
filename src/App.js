@@ -21,18 +21,26 @@ function App() {
     dispatch(getProducts());
   }, []);
   const [cart, setCart] = useState([]);
+  const [sortType, setSortType] = useState('');
+  const [filterCompanies, setfilterCompanies] = useState([]);
   const getTotalSum = () => cart.reduce((sum, { price, quantity }) => sum + price * quantity, 0);
   return (
     <div className="App">
       <Header cost={getTotalSum().toFixed(2)} />
       <div className="container">
         <div className="filters">
-          <SortingCard />
-          <FilterCard data={companies} />
+          <SortingCard sortType={sortType} setSortType={setSortType} />
+          <FilterCard data={companies} setSortType={setfilterCompanies} />
           {/* <FilterCard data={companies} /> */}
         </div>
         <div className="products">
-          <ProductList list={products} cart={cart} setCart={setCart} />
+          <ProductList
+            list={products}
+            cart={cart}
+            setCart={setCart}
+            sortType={sortType}
+            filterCompanies={filterCompanies}
+          />
         </div>
         <div className="product-basket">
           <Basket cart={cart} setCart={setCart} />
