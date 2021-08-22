@@ -1,8 +1,13 @@
+// import { useEffect } from 'react';
+import PropTypes from 'prop-types';
 import Card from '../Base/Card/Card';
 import Input from '../Base/Input/Input';
 import './sortingCard.scss';
 
-function SortingCard() {
+function SortingCard({ sortType, setSortType }) {
+  if (sortType) {
+    setSortType(sortType);
+  }
   return (
     <Card title="Sorting" className="sort">
       <Input
@@ -11,6 +16,7 @@ function SortingCard() {
         id="low"
         name="sort"
         value="lowToHigh"
+        setinputValue={setSortType}
       />
       <Input
         label="Price high to low"
@@ -18,6 +24,7 @@ function SortingCard() {
         id="high"
         name="sort"
         value="highToLow"
+        setinputValue={setSortType}
       />
       <Input
         label="New to old"
@@ -25,6 +32,7 @@ function SortingCard() {
         id="new"
         name="sort"
         value="newToOld"
+        setinputValue={setSortType}
       />
       <Input
         label="Old to new"
@@ -32,8 +40,16 @@ function SortingCard() {
         id="old"
         name="sort"
         value="oldToNew"
+        setinputValue={setSortType}
       />
     </Card>
   );
 }
+SortingCard.propTypes = {
+  setSortType: PropTypes.func.isRequired,
+  sortType: PropTypes.string,
+};
+SortingCard.defaultProps = {
+  sortType: '',
+};
 export default SortingCard;

@@ -1,10 +1,11 @@
-/* eslint-disable no-debugger */
 import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Pagination from '../Pagination/Pagination';
 import './productList.scss';
 
-function ProductList({ list, cart, setCart }) {
+function ProductList({
+  list, cart, setCart, sortType,
+}) {
   const [PageSize] = useState(16);
   const [currentPage, setCurrentPage] = useState(1);
   const firstPageIndex = (currentPage - 1) * PageSize;
@@ -36,7 +37,32 @@ function ProductList({ list, cart, setCart }) {
     }
     setCart(newCart);
   };
-
+  useEffect(() => {
+    switch (sortType) {
+      case 'lowToHigh': {
+        const lowToHighPrice = list.sort((a, b) => a.price - b.price);
+        setcurrentProducts(lowToHighPrice);
+        break;
+      }
+      case 'highToLow': {
+        const highToLowPrice = list.sort((a, b) => b.price - a.price);
+        setcurrentProducts(highToLowPrice);
+        break;
+      }
+      case 'newToOld': {
+        const newToOldDate = list.sort((a, b) => b.added - a.added);
+        setcurrentProducts(newToOldDate);
+        break;
+      }
+      case 'oldToNew': {
+        const oldToNewDate = list.sort((a, b) => a.added - b.added);
+        setcurrentProducts(oldToNewDate);
+        break;
+      }
+      default:
+        break;
+    }
+  }, [sortType]);
   return (
     <main className="productList">
       <div className="productList-header">
@@ -108,6 +134,9 @@ ProductList.propTypes = {
     }),
   ).isRequired,
   setCart: PropTypes.func.isRequired,
+  sortType: PropTypes.string,
 };
-
+ProductList.defaultProps = {
+  sortType: '',
+};
 export default ProductList;
