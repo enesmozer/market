@@ -3,11 +3,16 @@
 @import './variables.scss';
 @import './mixins.scss';
 :root {
-  font-size: 62.5%;
+  @include mq('tablet') {
+    font-size: 62.5%;
+  }
+  font-size: 1.33333vw;
   background-color: #e5e5e5;
 }
 .container {
-  display: flex;
+  @include mq('tablet') {
+    display: flex;
+  }
   .filters {
     margin-left: 10.4rem;
     margin-bottom: 2rem;
@@ -17,5 +22,11 @@
   }
   .product-basket {
     margin-top: 5rem;
+    @include mq('tablet') {
+      display: block;
+    }
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 }
