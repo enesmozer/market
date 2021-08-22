@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import Pagination from '../Pagination/Pagination';
 import './productList.scss';
 
-function ProductList({ list }) {
+function ProductList({ list, cart, setCart }) {
   const [PageSize] = useState(16);
   const [currentPage, setCurrentPage] = useState(1);
   const firstPageIndex = (currentPage - 1) * PageSize;
@@ -53,7 +53,10 @@ function ProductList({ list }) {
                 alt=""
               />
             </div>
-            <div className="product-cost">₺{product.price}</div>
+            <div className="product-cost">
+              ₺
+              {product.price}
+            </div>
             <div className="product-title">{product.name}</div>
             <button className="addButton" type="button">
               Add
@@ -78,6 +81,13 @@ ProductList.propTypes = {
       cost: PropTypes.number,
     }),
   ).isRequired,
+  cart: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      cost: PropTypes.number,
+    }),
+  ).isRequired,
+  setCart: PropTypes.func.isRequired,
 };
 
 export default ProductList;
