@@ -59,7 +59,7 @@ function Basket({ cart, setCart }) {
       <div className="divider" />
       <div className="total">
         ₺
-        {getTotalSum()}
+        {getTotalSum().toFixed(2)}
       </div>
     </div>
   );
