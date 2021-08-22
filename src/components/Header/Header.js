@@ -18,6 +18,6 @@ function Header({ cost }) {
   );
 }
 Header.propTypes = {
-  cost: PropTypes.number.isRequired,
+  cost: PropTypes.string.isRequired,
 };
 export default Header;

@@ -21,9 +21,10 @@ function App() {
     dispatch(getProducts());
   }, []);
   const [cart, setCart] = useState([]);
+  const getTotalSum = () => cart.reduce((sum, { price, quantity }) => sum + price * quantity, 0);
   return (
     <div className="App">
-      <Header cost={70} />
+      <Header cost={getTotalSum().toFixed(2)} />
       <div className="container">
         <div className="filters">
           <SortingCard />
