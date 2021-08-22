@@ -10,15 +10,25 @@ function Basket({ cart, setCart }) {
     newCart.find((item) => item.name === product.name).quantity += 1;
     setCart(newCart);
   };
+  const removeFromCart = (productToRemove) => {
+    setCart(cart.filter((product) => product !== productToRemove));
+  };
   const decraseQunatity = (product) => {
     const newCart = [...cart];
-    newCart.find((item) => item.name === product.name).quantity -= 1;
-    setCart(newCart);
+    const currentProduct = newCart.find((item) => item.name === product.name);
+    currentProduct.quantity -= 1;
+    if (currentProduct.quantity === 0) {
+      removeFromCart(currentProduct);
+    } else {
+      setCart(newCart);
+    }
   };
+
   return (
     <div className="basket">
-      {cart.map((item) => (
-        <div className="basketProduct">
+      {cart.map((item, index) => (
+        // eslint-disable-next-line react/no-array-index-key
+        <div key={index} className="basketProduct">
           <div className="basketProduct-info">
             <div className="basketProduct-name">{item.name}</div>
             <div className="basketProduct-cost">
