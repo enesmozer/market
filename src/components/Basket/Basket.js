@@ -23,40 +23,43 @@ function Basket({ cart, setCart }) {
       setCart(newCart);
     }
   };
-
+  const divider = cart.length > 0 ? <hr className="divider" /> : '';
   return (
     <div className="basket">
-      {cart.map((item, index) => (
-        // eslint-disable-next-line react/no-array-index-key
-        <div key={index} className="basketProduct">
-          <div className="basketProduct-info">
-            <div className="basketProduct-name">{item.name}</div>
-            <div className="basketProduct-cost">
-              {item.price}
-              {' '}
+      <div className="cart">
+        {cart.map((item, index) => (
+          // eslint-disable-next-line react/no-array-index-key
+          <div key={index} className="basketProduct">
+            <div className="basketProduct-info">
+              <div className="basketProduct-name">{item.name}</div>
+              <div className="basketProduct-cost">
+                {item.price}
+                {' '}
+              </div>
+            </div>
+            <div className="basketProduct-quantity">
+              <img
+                className="minus"
+                src={minus}
+                alt=""
+                onClick={() => decraseQunatity(item)}
+                aria-hidden="true"
+              />
+              <div className="basketProduct-quantity-number">
+                {item.quantity}
+              </div>
+              <img
+                className="plus"
+                src={plus}
+                alt=""
+                onClick={() => increaseQunatity(item)}
+                aria-hidden="true"
+              />
             </div>
           </div>
-          <div className="basketProduct-quantity">
-            <img
-              className="minus"
-              src={minus}
-              alt=""
-              onClick={() => decraseQunatity(item)}
-              aria-hidden="true"
-            />
-            <div className="basketProduct-quantity-number">{item.quantity}</div>
-            <img
-              className="plus"
-              src={plus}
-              alt=""
-              onClick={() => increaseQunatity(item)}
-              aria-hidden="true"
-            />
-          </div>
-        </div>
-      ))}
-
-      <div className="divider" />
+        ))}
+        {divider}
+      </div>
       <div className="total">
         ₺
         {getTotalSum().toFixed(2)}

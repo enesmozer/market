@@ -5,48 +5,57 @@
   border: 1rem solid $primary;
   background-color: $white;
   position: relative;
-  .basketProduct {
-    display: flex;
-    justify-content: space-between;
-    padding: 2rem;
-    &-name {
-      font-family: Open Sans;
-      font-style: normal;
-      font-weight: normal;
-      font-size: 1.44rem;
-      line-height: 1.8rem;
-      letter-spacing: 0.016rem;
-      color: #191919;
-    }
-    &-cost {
-      font-family: Open Sans;
-      font-style: normal;
-      font-weight: 600;
-      font-size: 1.4rem;
-      line-height: 1.8rem;
-      letter-spacing: 0.016rem;
-      color: $primary;
-    }
-    &-quantity {
+  .cart {
+    height: 80%;
+    overflow: auto;
+    .basketProduct {
       display: flex;
-      align-items: center;
-      .plus {
-        margin-top: 0.8rem;
-        margin-left: 0.5rem;
+      justify-content: space-between;
+      padding: 2rem;
+      &-name {
+        font-family: Open Sans;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 1.44rem;
+        line-height: 1.8rem;
+        letter-spacing: 0.016rem;
+        color: #191919;
       }
-      .minus {
-        margin-right: 1rem;
+      &-cost {
+        font-family: Open Sans;
+        font-style: normal;
+        font-weight: 600;
+        font-size: 1.4rem;
+        line-height: 1.8rem;
+        letter-spacing: 0.016rem;
+        color: $primary;
       }
-      &-number {
-        background: $primary;
-        color: $white;
+      &-quantity {
         display: flex;
         align-items: center;
-        justify-content: center;
-        width: 3.2rem;
-        height: 3.2rem;
+        .plus {
+          margin-top: 0.8rem;
+          margin-left: 0.5rem;
+        }
+        .minus {
+          margin-right: 1rem;
+        }
+        &-number {
+          background: $primary;
+          color: $white;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 3.2rem;
+          height: 3.2rem;
+        }
       }
     }
+  }
+  .divider {
+    background: #f4f4f4;
+    height: 0.1rem;
+    width: 85%;
   }
   .total {
     position: absolute;
