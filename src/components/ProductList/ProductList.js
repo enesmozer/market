@@ -59,8 +59,9 @@ function ProductList({ list, cart, setCart }) {
         </div>
       </div>
       <div className="productList-main">
-        {currentProducts.map((product) => (
-          <div className="product">
+        {currentProducts.map((product, index) => (
+          // eslint-disable-next-line react/no-array-index-key
+          <div key={index} className="product">
             <div className="product-image-container">
               <img
                 src="https://picsum.photos/200"
@@ -68,7 +69,10 @@ function ProductList({ list, cart, setCart }) {
                 alt=""
               />
             </div>
-            <div className="product-cost">₺{product.price}</div>
+            <div className="product-cost">
+              ₺
+              {product.price}
+            </div>
             <div className="product-title">{product.name}</div>
             <button
               className="addButton"
@@ -97,7 +101,12 @@ ProductList.propTypes = {
       cost: PropTypes.number,
     }),
   ).isRequired,
-  cart: PropTypes.shape({}).isRequired,
+  cart: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      cost: PropTypes.number,
+    }),
+  ).isRequired,
   setCart: PropTypes.func.isRequired,
 };
 
